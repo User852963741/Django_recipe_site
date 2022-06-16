@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block content %}
+<div class="container">
+    <div class="content-section">
+        <div class="media">
+            {% if user_.user_profile.picture %}
+                <img class="img-fluid account-img rounded-circle mr-2" style="max-width: 300px;" src="{{ user_.user_profile.picture.url }}">
+            {% else %}
+                <img class="img-fluid account-img rounded-circle mr-2" style="max-width: 300px;" src="{% static 'user_profile/img/default.png' %}">
+            {% endif %}
+            <div class="media-body">
+                <h2 class="account-heading">{{ user_.username }}</h2>
+                <h3 class="account-heading">{{ user_.first_name }} {{ user_.last_name }}</h3>
+                {% if user_ == request.user %}
+                    <p class="text-secondary">{{ user_.email }}</p>
+                    <a class="btn btn-secondary" href="{% url 'edit_profile' %}">{% trans "update profile"|capfirst %}</a><hr>
+                {% elif friendship %}
+                    {% if friendship.is_accepted %}
+                        <button class="btn btn-outline-success">{% trans "friends since"|capfirst %} {{ friendship.updated_at }}</button>
+                    {% elif friend_request.is_blocked %}
+                        <button class="btn btn-outline-danger">{% trans "blocked since"|capfirst %} {{ friendship.updated_at }}</button>
+                    {% else %}
+                        <button class="btn btn-outline-warning">{% trans "friend request sent at "|capfirst %} {{ friendship.updated_at }}</button>
+                    {% endif %}
+                {% else %}
+                    <a class="btn btn-success" href="{% url 'friend_create' %}?friend_id={{ user_.id }}">{% trans "befriend"|capfirst %}</a><hr>
+                {% endif %}
+                <h3>{% trans "walls"|capfirst %}</h3>
+                <div class="list-group">
+                    {% for wall in user_.walls.all %}
+                        <a class="list-group-item" href="{% url 'post_list' %}?wall_id={{ wall.id }}">{{ wall.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block title %}{% trans "profile"|capfirst %} | {{ block.super }}{% endblock title %}
