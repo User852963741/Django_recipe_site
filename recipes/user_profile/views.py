@@ -1,24 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from rest_framework import generics, permissions, exceptions
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from . forms import UserUpdateForm, UserProfileUpdateForm
-from . import serializers, models
-from simsonet_friends.models import Friend
 
 
 @login_required
 def view_my_profile(request):
     return render(request, 'user_profile/view_profile.html', {'user_': request.user })
-
-
-def view_user_profile(request, user_id):
-    user = get_object_or_404(get_user_model(), id=user_id)
-    friendship = Friend.objects.filter(friend=user_id, user=request.user).first()
-    return render(request, 'user_profile/view_profile.html', {'user_': user, 'friendship': friendship })
 
 
 @login_required
@@ -69,27 +60,4 @@ def register(request):
     return render(request, 'user_profile/register.html')
 
 
-class UpdateProfileAPI(generics.RetrieveUpdateAPIView):
-    serializer_class = serializers.ProfileSerializer
-    queryset = models.UserProfile.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-    def get_object(self):
-        if self.request.user.is_authenticated:
-            return models.UserProfile.objects.filter(user=self.request.user).first()
-        else:
-            raise exceptions.ValidationError(_('you must be logged in to update your profile').capitalize())
-
-    def put(self, request, *args, **kwargs):
-        profile = models.UserProfile.objects.filter(pk=self.request.user.user_profile.id)
-        if profile.exists():
-            return self.update(request, *args, **kwargs)
-        else:
-            raise exceptions.ValidationError(_('you cannot edit profiles of other users').capitalize())
-
-
-class CreateUserAPI(generics.CreateAPIView):
-    queryset = get_user_model().objects.all()
-    serializer_class = serializers.UserSerializer
-    permission_classes = [permissions.AllowAny]
 

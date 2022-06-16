@@ -22,6 +22,27 @@
                 <ul class="navbar-nav mr-auto">{% block navigation %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "Homepage" %}</a></li>
                 {% endblock navigation %}</ul>
+                <!-- User menu -->
+                <ul class="navbar-nav">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userMenuDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            &#128100; {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userMenuDropdown">
+                            <a class="dropdown-item" href="{% url 'view_profile' %}">{% trans 'profile'|capfirst %}</a>
+                            {% if user.is_superuser or user.is_staff %}
+                                <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a>
+                            {% endif %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'logout' %}?next={% url 'index' %}">&#128682; {% trans "logout"|capfirst %}</a>
+                        </div>
+                    </li>                
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">{% trans "login"|capfirst %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">{% trans "sign up"|capfirst %}</a></li>
+                    {% endif %}
+                </ul>
                 <!-- Language switcher -->
                 <form class="form-inline" action="{% url 'set_language' %}" method="post">
                     {% csrf_token %}
