@@ -6,11 +6,11 @@ class Ingredient(models.Model):
     name = models.CharField(_('name'), max_length=200, help_text=_('enter ingredient name (in plural form if possible)'))
 
     UNITS_OF_MEASURE = (
-        ('kg', _('kilos')),
         ('g', _('grams')),
         ('u', _('units')),
         ('ts', _('teaspoons')),
         ('tbls', _('table spoons')),
+        ('c', _('cups')),
     )
 
     measurement_unit = models.CharField(_('measured in'), max_length=4, choices=UNITS_OF_MEASURE, default='g',)
@@ -32,6 +32,8 @@ class Recipe(models.Model):
         related_name='recipes',
         verbose_name=_('owner'),
     )
+    description = models.TextField(_('description'), max_length=1000, help_text=_('add a short description of the recipe'))
+    coooking_order = models.TextField(_('cooking order'), max_length=1000, help_text=_('describe how the recipe should be cooked'))
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     cover = models.ImageField(_('cover'), upload_to='recipe_site/covers', null=True, blank=True)
 
