@@ -21,9 +21,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">{% block navigation %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "Homepage" %}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "My recipes" %}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "My favourites" %}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "Recipe history" %}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "I'm feeling lucky" %}</a></li>
                 {% endblock navigation %}</ul>
                 <!-- User menu -->
@@ -35,6 +32,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="userMenuDropdown">
                             <a class="dropdown-item" href="{% url 'view_profile' %}">{% trans 'profile'|capfirst %}</a>
+                            <a class="dropdown-item" href="{% url 'view_profile' %}">{% trans 'my recipes'|capfirst %}</a>
+                            <a class="dropdown-item" href="{% url 'view_profile' %}">{% trans 'my favourites'|capfirst %}</a>
+                            <a class="dropdown-item" href="{% url 'view_profile' %}">{% trans 'recipe history'|capfirst %}</a>
                             {% if user.is_superuser or user.is_staff %}
                                 <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a>
                             {% endif %}
