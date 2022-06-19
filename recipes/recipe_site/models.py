@@ -11,10 +11,10 @@ class Ingredient(models.Model):
         ('g', _('grams')),
         ('l', _('liters')),
         ('ml', _('mililiters')),
-        ('u', _('units')),
-        ('ts', _('teaspoons')),
-        ('tbls', _('table spoons')),
-        ('c', _('cups')),
+        (_('units'), _('units')),
+        (_('tsp'), _('teaspoons')),
+        (_('tbsp'), _('tablespoons')),
+        (_('c'), _('cups')),
     )
 
     measurement_unit = models.CharField(_('measured in'), max_length=4, choices=UNITS_OF_MEASURE, default='g',)
@@ -38,7 +38,7 @@ class Recipe(models.Model):
     )
     name = models.CharField(_('name'), max_length=200)
     description = models.TextField(_('description'), max_length=1000, help_text=_('add a short description of the recipe'))
-    coooking_order = HTMLField(_('cooking order'), help_text=_('describe how the recipe should be cooked'))
+    cooking_order = HTMLField(_('cooking order'), help_text=_('describe how the recipe should be cooked'))
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     cover = models.ImageField(_('cover'), upload_to='recipe_site/covers', null=True, blank=True)
 
@@ -51,8 +51,8 @@ class Recipe(models.Model):
         ordering = ('created_at', )
 
 class RecipeIngredient(models.Model):
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name='ingredients')
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients')
     quantity = models.DecimalField(max_digits=4, decimal_places=2)
 
     def __str__(self):
