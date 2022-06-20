@@ -90,6 +90,12 @@ class UserRecipeDetailView(generic.DetailView):
     template_name = 'recipe_site/user_recipe.html'
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user1'] = self.request.user
+        return context
+
+
 class UserRecipeListView(generic.ListView):
     model = UserRecipe
     paginate_by = 10
@@ -132,23 +138,22 @@ class UserRecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Upda
         return super().form_valid(form)
 
     def test_func(self):
-        post_instance = self.get_object()
-        return post_instance.user == self.request.user
+        return self.get_object().user == self.request.user
 
 
-# class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
-#     model = Recipe
-#     template_name = 'recipe_site/recipe_delete.html'
+class UserRecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = UserRecipe
+    template_name = 'recipe_site/user_recipe_delete.html'
 
-#     def test_func(self):
-#         recipe_instance = self.get_object()
-#         return recipe_instance.owner == self.request.user
+    def test_func(self):
+        user_recipe_instance = self.get_object()
+        return user_recipe_instance.user == self.request.user
 
-#     def get_success_url(self):
-#         messages.success(self.request, _('Deleted successfully'))
-#         return reverse_lazy('my_recipe_list')
+    def get_success_url(self):
+        messages.success(self.request, _('Deleted successfully'))
+        return reverse_lazy('user_recipes')
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['delete'] = True
-#         return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['delete'] = True
+        return context

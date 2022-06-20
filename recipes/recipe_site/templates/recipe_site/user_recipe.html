@@ -4,10 +4,10 @@
 <div class="container">
     <h2>{{ object|safe }}</h2> {% if object.favourite %} {% trans "favourited"|capfirst %} {% endif %}<br>
     {% trans "You rated the recipe" %} {{ object.rating }}/10<br>
-    {{ object.note|safe }}
-    {% if object.owner == user %}
-        <a class="btn btn-secondary" href="{% url 'recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
-        <a class="btn btn-outline-danger" href="{% url 'recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
+    {{ object.note|safe }}<br>
+    {% if object.user == user1 %}
+        <a class="btn btn-secondary mt-4" href="{% url 'user_recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
+        <a class="btn btn-outline-danger mt-4" href="{% url 'user_recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
     {% endif %}
 
 </div>
