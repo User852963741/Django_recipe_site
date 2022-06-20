@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static i18n crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <h1> {% trans "edit your saved recipe"|capfirst %} </h1>
+    <form action="{% url 'user_recipe_update' object.id %}" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="form-group"><button type="submit" class="btn btn-primary">
+            {% trans "update user recipe"|capfirst %}
+        </button></div>
+    </form>
+</div>
+{% endblock content %}

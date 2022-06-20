@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block content %}
+<div class="container">
+    {% for user_recipe in user_recipes %}
+    <a href="{% url 'user_recipe' user_recipe.id %}"> <h4>{{ user_recipe.recipe.name }}</h4> <br>
+    {% endfor %}
+</div>
+{% endblock content %}

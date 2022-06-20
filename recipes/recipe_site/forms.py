@@ -12,3 +12,13 @@ class RecipeForm(forms.ModelForm):
             'cooking_order': TinyMCE(),
             'owner': forms.HiddenInput(),
                     }    
+
+
+class UserRecipeForm(forms.ModelForm):
+    class Meta:
+        model = models.UserRecipe
+        fields = ('user', 'recipe', 'rating', 'favourite', 'note', )
+        widgets = {
+            'note': TinyMCE(),
+            'user': forms.HiddenInput(),
+                    }    

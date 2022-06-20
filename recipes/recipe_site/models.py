@@ -77,3 +77,9 @@ class UserRecipe(models.Model):
 
     def __str__(self):
         return f'{str(self.user)} - {str(self.recipe.name)}'
+    
+    def get_absolute_url(self):
+        return reverse("user_recipe", kwargs={"pk": self.pk})
+    
+    class Meta:
+        unique_together = ('user', 'recipe', )

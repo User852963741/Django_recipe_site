@@ -2,15 +2,9 @@
 {% load static i18n %}
 {% block content %}
 <div class="container">
-    <h2>{{ object|safe }}</h2><br>
-    {% trans "author"|capfirst %} - {{ object.owner }}<br>
-    {{ object.description|safe }}<br>
-    {% trans "recipe ingredients"|capfirst %}: <br>
-    {% for product in object.ingredients.all %}
-    <span class="badge badge-pill badge-secondary ml-1">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span> <br>
-    {% endfor %}
-    <h4>{% trans "Cooking instructions" %}:</h4><br>
-    {{ object.cooking_order|safe }}<br>
+    <h2>{{ object|safe }}</h2> {% if object.favourite %} {% trans "favourited"|capfirst %} {% endif %}<br>
+    {% trans "You rated the recipe" %} {{ object.rating }}/10<br>
+    {{ object.note|safe }}
     {% if object.owner == user %}
         <a class="btn btn-secondary" href="{% url 'recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
         <a class="btn btn-outline-danger" href="{% url 'recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
