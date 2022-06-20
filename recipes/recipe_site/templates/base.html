@@ -20,9 +20,9 @@
             </button>   
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">{% block navigation %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "Homepage" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "homepage"|capfirst %}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'recipe_list' %}">{% trans "all recipes"|capfirst %}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "I'm feeling lucky" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'lucky_recipe' %}">{% trans "i'm feeling lucky"|capfirst %}</a></li>
                 {% endblock navigation %}</ul>
                 <!-- User menu -->
                 <ul class="navbar-nav">

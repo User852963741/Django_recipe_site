@@ -7,7 +7,7 @@ from . forms import RecipeForm, UserRecipeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-
+import random 
 
 def index(request):
     return render(request, 'base.html')
@@ -157,3 +157,19 @@ class UserRecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Dele
         context = super().get_context_data(**kwargs)
         context['delete'] = True
         return context
+
+
+class LuckyListView(generic.ListView):
+    model = Recipe
+    template_name = 'recipe_site/user_recipes.html'
+
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        list = []
+        for recipe in queryset:
+            list.append(recipe.id)
+        lucky = random.choice(list)
+        queryset = queryset.filter(id=lucky)
+
+        return queryset
