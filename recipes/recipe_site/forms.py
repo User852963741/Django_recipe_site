@@ -3,7 +3,7 @@ from tinymce.widgets import TinyMCE
 from . import models
 
 
-class PostForm(forms.ModelForm):
+class RecipeForm(forms.ModelForm):
     class Meta:
         model = models.Recipe
         fields = ('owner', 'name', 'description', 'cooking_order', 'cover' )

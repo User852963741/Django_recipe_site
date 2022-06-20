@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h2>{{ object|safe }}</h2><br>
-    {% trans "recipe by"|capfirst %} - {{ object.owner }}<br>
+    {% trans "author"|capfirst %} - {{ object.owner }}<br>
     {{ object.description|safe }}<br>
     {% trans "recipe ingredients"|capfirst %}: <br>
     {% for product in object.ingredients.all %}
