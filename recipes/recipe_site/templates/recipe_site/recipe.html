@@ -2,14 +2,15 @@
 {% load static i18n %}
 {% block content %}
 <div class="container">
-    <h2>{{ object|safe }}</h2><br>
+    <h2>{{ object }} </h2><br>
+    {% trans "average rating"|capfirst %} - {{ object.recipe_rating }}<br>
     {% trans "recipe by"|capfirst %} - {{ object.owner }}<br>
     {{ object.description|safe }}<br>
     {% trans "recipe ingredients"|capfirst %}: <br>
     {% for product in object.ingredients.all %}
     <span class="badge badge-pill badge-secondary ml-1">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span> <br>
     {% endfor %}
-    <h4>{% trans "Cooking instructions" %}:</h4><br>
+    <h4>{% trans "cooking instructions"|capfirst %}:</h4><br>
     {{ object.cooking_order|safe }}<br>
     {% if object.owner == user %}
         <a class="btn btn-secondary" href="{% url 'recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>

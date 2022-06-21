@@ -1,1 +1,7 @@
 body { background-color: coral; }
+.my-header h4 { 
+    display: inline;
+  }
+  .my-header span { 
+    float: right;
+  }

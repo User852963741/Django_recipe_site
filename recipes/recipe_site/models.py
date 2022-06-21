@@ -49,6 +49,18 @@ class Recipe(models.Model):
     def get_absolute_url(self):
         return reverse("recipe", kwargs={"pk": self.pk})
 
+    @property
+    def recipe_rating(self):
+        quantity = self.user_recipes.all().count()
+        if quantity > 0:
+            rating = 0
+            for user_recipe in self.user_recipes.all():
+                rating += user_recipe.rating 
+            return rating/quantity
+        else:
+            return "?"
+
+
     class Meta:
         verbose_name = _('recipe')
         verbose_name_plural = _('recipes')
@@ -69,7 +81,7 @@ class UserRecipe(models.Model):
         blank=True,
         on_delete=models.CASCADE,
     )
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='user_recipes')
     RATING_CHOICES = zip( range(1,11), range(1,11) )
     rating = models.IntegerField(choices=RATING_CHOICES, blank=True)
     favourite = models.BooleanField(default=False)
@@ -80,6 +92,7 @@ class UserRecipe(models.Model):
     
     def get_absolute_url(self):
         return reverse("user_recipe", kwargs={"pk": self.pk})
-    
+
+
     class Meta:
         unique_together = ('user', 'recipe', )

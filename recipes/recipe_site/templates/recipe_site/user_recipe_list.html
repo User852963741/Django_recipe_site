@@ -4,7 +4,10 @@
 <div class="container">
     <h2 class="mb-3"> {% trans "my recipe history"|capfirst %}: </h2>
     {% for user_recipe in user_recipes %}
-    <a href="{% url 'user_recipe' user_recipe.id %}"> <h4>{{ user_recipe.recipe.name }}</h4> <br>
+    <p>
+        <a href="{% url 'user_recipe' user_recipe.id %}"> <h4 style="display: inline;">{{ user_recipe.recipe.name }}</h4> </a>
+        {% trans "average rating" %}: {{ user_recipe.recipe.recipe_rating }} {% trans "my rating" %}: {{user_recipe.rating}}
+    </p>
     {% endfor %}
 </div>
 {% endblock content %}

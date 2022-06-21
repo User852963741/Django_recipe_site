@@ -16,12 +16,12 @@ def index(request):
 class RecipeDetailView(generic.DetailView):
     model = Recipe
     template_name = 'recipe_site/recipe.html'
-
+    
 
 class RecipeListView(generic.ListView):
     model = Recipe
     paginate_by = 10
-    template_name = 'recipe_site/recipe_list.html'
+    template_name = 'recipe_site/recipe_list.html' 
 
 
 class MyRecipeListView(generic.ListView):

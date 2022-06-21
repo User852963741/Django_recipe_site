@@ -6,9 +6,15 @@
     {% trans "You rated the recipe" %} {{ object.rating }}/10<br>
     {{ object.note|safe }}<br>
     {% if object.user == user1 %}
-        <a class="btn btn-secondary mt-4" href="{% url 'user_recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
-        <a class="btn btn-outline-danger mt-4" href="{% url 'user_recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
-    {% endif %}
+        <a class="btn btn-secondary mt-4 mb-4" href="{% url 'user_recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
+        <a class="btn btn-outline-danger mt-4 mb-4" href="{% url 'user_recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
+    {% endif %}<br>
+    <h4>{% trans "recipe ingredients"|capfirst %}:</h4> <br>
+    {% for product in object.recipe.ingredients.all %}
+    <span class="badge badge-pill badge-secondary ml-1">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span> <br>
+    {% endfor %}
+    <h4 class="mt-4">{% trans "cooking instructions"|capfirst %}:</h4><br>
+    {{ object.recipe.cooking_order|safe }}<br>
 
 </div>
 {% endblock content %}
