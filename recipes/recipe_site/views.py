@@ -105,7 +105,6 @@ class UserRecipeListView(generic.ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print(queryset)
         queryset = queryset.filter(user=get_user(self.request))
         return queryset
 
@@ -171,5 +170,16 @@ class LuckyListView(generic.ListView):
             list.append(recipe.id)
         lucky = random.choice(list)
         queryset = queryset.filter(id=lucky)
-
         return queryset
+
+
+class FavouriteListView(generic.ListView):
+    model = UserRecipe
+    template_name = 'recipe_site/user_favourites.html'
+    context_object_name = 'favourite_list'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(user=get_user(self.request), favourite=True)
+        return queryset
+

@@ -2,6 +2,7 @@
 {% load static i18n %}
 {% block content %}
 <div class="container">
+    <h2 class="mb-3"> {% trans "my recipes"|capfirst %}: </h2>
     {% for recipe in my_recipe_list %}
     <a href="{% url 'recipe' recipe.id %}"> <h4>{{ recipe }}</h4> <br>
     {% endfor %}
