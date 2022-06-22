@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 {% block content %}
-<div class="container">
+<div class="container bg-light clearfix">
+    <h2 class="mb-3"> {% trans "all recipes"|capfirst %} </h2>
     {% for recipe in recipe_list %}
-    <p><a href="{% url 'recipe' recipe.id %}"><h4 style="display: inline;" >{{ recipe }}</h4></a> {% trans "rating" %}: {{ recipe.recipe_rating }}</p>
+    <ul class="list-group">
+        <li class="list-group-item">{% if recipe.cover %}<img src="{{ recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >{% endif %}
+        <a href="{% url 'recipe' recipe.id %}"><h4 style="display: inline;" >{{ recipe }}</h4></a> {% trans "rating" %}: {{ recipe.recipe_rating }}
+        </li>
+    </ul>
     {% endfor %}
 </div>
+
 {% endblock content %}

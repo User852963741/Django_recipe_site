@@ -21,6 +21,7 @@ class UserRecipeForm(forms.ModelForm):
         widgets = {
             'note': TinyMCE(),
             'user': forms.HiddenInput(),
+            'recipe': forms.HiddenInput(),
 
 
                     }    
@@ -28,6 +29,9 @@ class RecipeIngredientForm(forms.ModelForm):
     class Meta:
         model = models.RecipeIngredient
         fields = ('ingredient', 'recipe', 'quantity')
+        widgets = {
+            'recipe' : forms.HiddenInput(),
+        }
 
 
 class IngredientForm(forms.ModelForm):

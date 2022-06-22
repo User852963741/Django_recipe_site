@@ -118,12 +118,18 @@ class UserRecipeCreateView(LoginRequiredMixin, generic.CreateView):
     def get_initial(self):
         initial = super().get_initial()
         initial['user'] = self.request.user
+        initial['recipe'] = self.request.GET.get('recipe_id')
         return initial
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
         messages.success(self.request, _('Created successfully'))
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(self.object)
+        return context
 
 class UserRecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = UserRecipe
@@ -197,11 +203,12 @@ class RecipeIngredientCreateView(LoginRequiredMixin, generic.CreateView):
     def get_initial(self):
         initial = super().get_initial()
         initial['user'] = self.request.user
+        initial['recipe'] = self.request.GET.get('recipe_id')
         return initial
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
-        messages.success(self.request, _('Created successfully'))
+        messages.success(self.request, _('Added successfully'))
         return super().form_valid(form)
 
     def get_success_url(self):

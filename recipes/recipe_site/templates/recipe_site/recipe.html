@@ -2,27 +2,45 @@
 {% load static i18n %}
 {% block content %}
 <div class="container">
-    <h2>{{ object }} </h2><br>
-    {% trans "average rating"|capfirst %} - {{ object.recipe_rating }}<br>
-    {% trans "recipe by"|capfirst %} - {{ object.owner }}<br>
-    {{ object.description|safe }}<br>
-    <h4>{% trans "recipe ingredients"|capfirst %}:</h4>
-    {% for product in object.ingredients.all %}
-    <br><span class="badge badge-pill badge-secondary ml-1">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span>
-        {% if object.owner == user %}
-        <a class="btn btn-secondary bg-primary mt-2 mb-2" href="{% url 'recipe_ingredient_update' product.id %}">{% trans "edit"|capfirst %}</a>
-        <a class="btn btn-outline-danger mt-2 mb-2" href="{% url 'recipe_ingredient_delete' product.id %}">{% trans "delete"|capfirst %}</a>
-        {% endif %}
-    {% endfor %}
-    {% if object.owner == user %}
-        <br><a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'recipe_ingredient_create' %}">{% trans "add"|capfirst %}</a>
-    {% endif %}
-    <h4 class="mt-4">{% trans "cooking instructions"|capfirst %}:</h4>
-    {{ object.cooking_order|safe }}<br>
-    {% if object.owner == user %}
-        <a class="btn btn-secondary bg-primary" href="{% url 'recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
-        <a class="btn btn-outline-danger" href="{% url 'recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
-    {% endif %}
-
+    <div class="row">
+        <div class="col-sm">
+            <h2>{{ object }} </h2> <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'user_recipe_create' %}?recipe_id={{object.id}}">{% trans "save & rate"|capfirst %}</a><br>
+            {% trans "average rating"|capfirst %} - {{ object.recipe_rating }}<br>
+            {% trans "recipe by"|capfirst %} - {{ object.owner }}<br>
+            {{ object.description|safe }}<br>
+            <h4>{% trans "recipe ingredients"|capfirst %}:</h4>
+            {% for product in object.ingredients.all %}
+            <div class="container">
+                <div class="row no-gutters">
+                        <div class="col-sm">
+                            <br><span class="badge badge-pill badge-secondary ml-1 ">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span>
+                        </div>
+                        <div class="col-sm">
+                            {% if object.owner == user %}
+                            <a class="btn btn-secondary bg-primary mt-2 mb-2" href="{% url 'recipe_ingredient_update' product.id %}">{% trans "edit"|capfirst %}</a>
+                            <a class="btn btn-outline-danger mt-2 mb-2" href="{% url 'recipe_ingredient_delete' product.id %}">{% trans "delete"|capfirst %}</a>
+                            {% endif %}
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if object.owner == user %}
+                <br><a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'recipe_ingredient_create' %}?recipe_id={{object.id}}">{% trans "add"|capfirst %}</a>
+            {% endif %}
+            <h4 class="mt-4">{% trans "cooking instructions"|capfirst %}:</h4>
+            {{ object.cooking_order|safe }}<br>
+            {% if object.owner == user %}
+                <a class="btn btn-secondary bg-primary" href="{% url 'recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
+                <a class="btn btn-outline-danger" href="{% url 'recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
+            {% endif %}
+        </div>
+        <div class="col-sm">
+            {% if object.cover %}
+                        <img src="{{ object.cover.url }}" class="img-thumbnail" style="width:80%" alt="...">
+                    {% else %}
+                        <img src="{% static 'recipes/images/missing.jpg' %}" class="card-img-top" style="width:35%" alt="...">
+                    {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock content %}

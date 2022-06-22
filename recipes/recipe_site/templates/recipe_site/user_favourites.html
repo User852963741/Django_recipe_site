@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 {% block content %}
-<div class="container">
+<div class="container bg-light clearfix">
+    <h2 class="mb-3"> {% trans "my favourite recipes"|capfirst %} </h2>
     {% for favourite in favourite_list %}
-    <a href="{% url 'recipe' favourite.id %}"> <h4>{{ favourite.recipe }}</h4> <br>
+    <ul class="list-group">
+        <li class="list-group-item">{% if favourite.recipe.cover %}<img src="{{ favourite.recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >{% endif %}
+        <a href="{% url 'recipe' favourite.id %}"><h4 style="display: inline;" >{{ favourite.recipe }}</h4></a> {% trans "rating" %}: {{ favourite.recipe.recipe_rating }}
+        </li>
+    </ul>
     {% endfor %}
 </div>
 {% endblock content %}

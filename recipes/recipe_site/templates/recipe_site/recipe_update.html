@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h1> {% trans "edit your recipe"|capfirst %} </h1>
-    <form action="{% url 'recipe_update' object.id %}" method="post">
+    <form class="form-horizontal form_middle" enctype='multipart/form-data' action="{% url 'recipe_update' object.id %}" method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <div class="form-group"><button type="submit" class="btn btn-primary">
