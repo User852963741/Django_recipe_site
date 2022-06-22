@@ -6,5 +6,6 @@
     {% for recipe in my_recipe_list %}
     <a href="{% url 'recipe' recipe.id %}"> <h4>{{ recipe }}</h4> <br>
     {% endfor %}
+    <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'create_recipe' %}">{% trans "create recipe"|capfirst %}</a>
 </div>
 {% endblock content %}

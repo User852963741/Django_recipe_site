@@ -5,7 +5,7 @@ from tinymce.models import HTMLField
 from django.urls import reverse
 
 class Ingredient(models.Model):
-    name = models.CharField(_('name'), max_length=200, help_text=_('enter ingredient name (in plural form if possible)'))
+    name = models.CharField(_('name'), max_length=200, unique=True, help_text=_('enter ingredient name (in plural form if possible)'))
 
     UNITS_OF_MEASURE = (
         ('kg', _('kilograms')),
@@ -69,10 +69,13 @@ class Recipe(models.Model):
 class RecipeIngredient(models.Model):
     ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name='ingredients')
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients')
-    quantity = models.DecimalField(max_digits=4, decimal_places=2)
+    quantity = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return f'{str(self.ingredient.name)} in {str(self.recipe.name)}'
+    
+    class Meta:
+        unique_together = ('ingredient', 'recipe', )
 
 class UserRecipe(models.Model):
     user = models.ForeignKey(

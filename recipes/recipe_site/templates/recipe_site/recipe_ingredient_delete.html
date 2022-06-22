@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static i18n crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <h1>
+        {% trans "delete"|capfirst %} {{object}}
+    </h1>
+    <form action="{% url 'recipe_ingredient_delete' object.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">{% trans "delete"|capfirst %}</button>
+            <a class="btn btn-primary" href="{% url 'recipe' object.id %}">{% trans "back to recipe"|capfirst %}</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

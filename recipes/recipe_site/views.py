@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views import generic
-from . models import Recipe, UserRecipe
+from . models import Recipe, UserRecipe, RecipeIngredient, Ingredient
 from django.contrib.auth import get_user_model, get_user
 from django.urls import reverse_lazy
-from . forms import RecipeForm, UserRecipeForm
+from . forms import RecipeForm, UserRecipeForm, RecipeIngredientForm, IngredientForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
@@ -183,3 +183,81 @@ class FavouriteListView(generic.ListView):
         queryset = queryset.filter(user=get_user(self.request), favourite=True)
         return queryset
 
+
+class RecipeIngredientDetailView(generic.DetailView):
+    model = RecipeIngredient
+    template_name = 'recipe_site/recipe_ingredient.html'
+
+
+class RecipeIngredientCreateView(LoginRequiredMixin, generic.CreateView):
+    model = RecipeIngredient
+    template_name = 'recipe_site/recipe_ingredient_create.html'
+    form_class = RecipeIngredientForm
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['user'] = self.request.user
+        return initial
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        messages.success(self.request, _('Created successfully'))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+          recipe_id=self.object.recipe.id
+          return reverse_lazy('recipe', kwargs={'pk': recipe_id})
+    
+
+class RecipeIngredientUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = RecipeIngredient
+    template_name = 'recipe_site/recipe_ingredient_update.html'
+    form_class = RecipeIngredientForm
+
+    def form_valid(self, form):
+        form.instance.id = self.get_object().id
+        form.instance.user = self.request.user
+        messages.success(self.request, _('Updated successfully'))
+        return super().form_valid(form)
+
+    def test_func(self):
+        recipe_ingredient_instance = self.get_object()
+        return recipe_ingredient_instance.recipe.owner == self.request.user
+
+    def get_success_url(self):
+        recipe_id=self.object.recipe.id
+        return reverse_lazy('recipe', kwargs={'pk': recipe_id})
+
+
+class RecipeIngredientDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = RecipeIngredient
+    template_name = 'recipe_site/recipe_ingredient_delete.html'
+
+    def test_func(self):
+        recipe_ingredient_instance = self.get_object()
+        return recipe_ingredient_instance.recipe.owner == self.request.user
+
+    def get_success_url(self):
+        messages.success(self.request, _('Deleted successfully'))
+        recipe_id=self.object.recipe.id
+        return reverse_lazy('recipe', kwargs={'pk': recipe_id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['delete'] = True
+        return context
+
+
+class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
+    model = RecipeIngredient
+    template_name = 'recipe_site/ingredient_create.html'
+    form_class = IngredientForm
+
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        messages.success(self.request, _('Created successfully'))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+          return reverse_lazy('my_recipe_list')

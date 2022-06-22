@@ -6,14 +6,21 @@
     {% trans "average rating"|capfirst %} - {{ object.recipe_rating }}<br>
     {% trans "recipe by"|capfirst %} - {{ object.owner }}<br>
     {{ object.description|safe }}<br>
-    {% trans "recipe ingredients"|capfirst %}: <br>
+    <h4>{% trans "recipe ingredients"|capfirst %}:</h4>
     {% for product in object.ingredients.all %}
-    <span class="badge badge-pill badge-secondary ml-1">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span> <br>
+    <br><span class="badge badge-pill badge-secondary ml-1">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span>
+        {% if object.owner == user %}
+        <a class="btn btn-secondary bg-primary mt-2 mb-2" href="{% url 'recipe_ingredient_update' product.id %}">{% trans "edit"|capfirst %}</a>
+        <a class="btn btn-outline-danger mt-2 mb-2" href="{% url 'recipe_ingredient_delete' product.id %}">{% trans "delete"|capfirst %}</a>
+        {% endif %}
     {% endfor %}
-    <h4>{% trans "cooking instructions"|capfirst %}:</h4><br>
+    {% if object.owner == user %}
+        <br><a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'recipe_ingredient_create' %}">{% trans "add"|capfirst %}</a>
+    {% endif %}
+    <h4 class="mt-4">{% trans "cooking instructions"|capfirst %}:</h4>
     {{ object.cooking_order|safe }}<br>
     {% if object.owner == user %}
-        <a class="btn btn-secondary" href="{% url 'recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
+        <a class="btn btn-secondary bg-primary" href="{% url 'recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
         <a class="btn btn-outline-danger" href="{% url 'recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
     {% endif %}
 
