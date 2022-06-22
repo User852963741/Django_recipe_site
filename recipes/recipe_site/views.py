@@ -20,7 +20,7 @@ class RecipeDetailView(generic.DetailView):
 
 class RecipeListView(generic.ListView):
     model = Recipe
-    paginate_by = 10
+    paginate_by = 6
     template_name = 'recipe_site/recipe_list.html' 
 
 

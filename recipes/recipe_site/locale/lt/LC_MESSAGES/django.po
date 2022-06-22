@@ -1,0 +1,334 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-22 17:52+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
+
+#: .\recipe_site\models.py:8 .\recipe_site\models.py:40
+msgid "name"
+msgstr "pavadinimas"
+
+#: .\recipe_site\models.py:8
+msgid "enter ingredient name (in plural form if possible)"
+msgstr "įveskite ingrediento pavadinimą (jei įmanoma daugiskaita)"
+
+#: .\recipe_site\models.py:11
+msgid "kilograms"
+msgstr "kg"
+
+#: .\recipe_site\models.py:12
+msgid "grams"
+msgstr "g"
+
+#: .\recipe_site\models.py:13
+msgid "liters"
+msgstr "l"
+
+#: .\recipe_site\models.py:14
+msgid "mililiters"
+msgstr "ml"
+
+#: .\recipe_site\models.py:15
+msgid "units"
+msgstr "vnt."
+
+#: .\recipe_site\models.py:16
+msgid "tsp"
+msgstr "arb.š."
+
+#: .\recipe_site\models.py:16
+msgid "teaspoons"
+msgstr "šaukšteliai"
+
+#: .\recipe_site\models.py:17
+msgid "tbsp"
+msgstr "vlg.š."
+
+#: .\recipe_site\models.py:17
+msgid "tablespoons"
+msgstr "šaukštai"
+
+#: .\recipe_site\models.py:18
+msgid "c"
+msgstr "puodeliai"
+
+#: .\recipe_site\models.py:18
+msgid "cups"
+msgstr "puodeliai"
+
+#: .\recipe_site\models.py:21
+msgid "measured in"
+msgstr "matuojama"
+
+#: .\recipe_site\models.py:27
+msgid "ingredient"
+msgstr "ingredientas"
+
+#: .\recipe_site\models.py:28
+msgid "ingredients"
+msgstr "ingredientai"
+
+#: .\recipe_site\models.py:38
+msgid "owner"
+msgstr "savininkas"
+
+#: .\recipe_site\models.py:41
+msgid "description"
+msgstr "aprašymas"
+
+#: .\recipe_site\models.py:41
+msgid "add a short description of the recipe"
+msgstr "pridėkite trumpą recepto aprašymą"
+
+#: .\recipe_site\models.py:42
+msgid "cooking order"
+msgstr "gmainimo eiga"
+
+#: .\recipe_site\models.py:42
+msgid "describe how the recipe should be cooked"
+msgstr "aprašykite gaminimo eigą"
+
+#: .\recipe_site\models.py:44
+msgid "cover"
+msgstr "viršelis"
+
+#: .\recipe_site\models.py:65
+msgid "recipe"
+msgstr "receptas"
+
+#: .\recipe_site\models.py:66
+msgid "recipes"
+msgstr "receptai"
+
+#: .\recipe_site\models.py:91
+msgid "private note"
+msgstr "privatus komentaras"
+
+#: .\recipe_site\models.py:91
+msgid "add a private note to yourself about this recipe"
+msgstr "pridėkite privatų komentarą"
+
+#: .\recipe_site\templates\base.html:23
+msgid "homepage"
+msgstr "pradžia"
+
+#: .\recipe_site\templates\base.html:24
+#: .\recipe_site\templates\recipe_site\recipe_list.html:5
+msgid "all recipes"
+msgstr "visi receptai"
+
+#: .\recipe_site\templates\base.html:25
+msgid "best rated recipes"
+msgstr "geriausiai įvertinti receptai"
+
+#: .\recipe_site\templates\base.html:26
+msgid "i'm feeling lucky"
+msgstr "man šiandien sekasi"
+
+#: .\recipe_site\templates\base.html:36
+msgid "profile"
+msgstr "profilis"
+
+#: .\recipe_site\templates\base.html:37
+#: .\recipe_site\templates\recipe_site\my_recipe_list.html:5
+msgid "my recipes"
+msgstr "mano receptai"
+
+#: .\recipe_site\templates\base.html:38
+msgid "my favourites"
+msgstr "mano mėgiamiausi"
+
+#: .\recipe_site\templates\base.html:39
+msgid "recipe history"
+msgstr "receptų istorija"
+
+#: .\recipe_site\templates\base.html:41
+msgid "admin"
+msgstr "adminas"
+
+#: .\recipe_site\templates\base.html:44
+msgid "logout"
+msgstr "atsijungti"
+
+#: .\recipe_site\templates\base.html:48
+msgid "login"
+msgstr "prisijungti"
+
+#: .\recipe_site\templates\base.html:49
+msgid "sign up"
+msgstr "užsiregistruoti"
+
+#: .\recipe_site\templates\base.html:80
+msgid "Welcome to the one and only recipe site you will ever need!"
+msgstr "Sveiki atvykę į patį geriausią receptų puslapį!"
+
+#: .\recipe_site\templates\recipe_site\ingredient_create.html:9
+msgid "create ingredient"
+msgstr "sukurti ingredientą"
+
+#: .\recipe_site\templates\recipe_site\my_recipe_list.html:9
+#: .\recipe_site\templates\recipe_site\recipe_list.html:9
+#: .\recipe_site\templates\recipe_site\user_favourites.html:9
+msgid "rating"
+msgstr "įvertinimas"
+
+#: .\recipe_site\templates\recipe_site\my_recipe_list.html:13
+#: .\recipe_site\templates\recipe_site\recipe_create.html:9
+msgid "create recipe"
+msgstr "sukurti receptą"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:7
+msgid "save & rate"
+msgstr "išsaugoti & įvertinti"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:8
+#: .\recipe_site\templates\recipe_site\user_recipe_list.html:9
+msgid "average rating"
+msgstr "vidutinis įvertinimas"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:9
+msgid "recipe by"
+msgstr "recepto autorius"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:11
+#: .\recipe_site\templates\recipe_site\user_recipe.html:12
+msgid "recipe ingredients"
+msgstr "recepto ingredientai"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:20
+#: .\recipe_site\templates\recipe_site\recipe.html:33
+#: .\recipe_site\templates\recipe_site\user_recipe.html:9
+msgid "edit"
+msgstr "pakeisti"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:21
+#: .\recipe_site\templates\recipe_site\recipe.html:34
+#: .\recipe_site\templates\recipe_site\recipe_delete.html:11
+#: .\recipe_site\templates\recipe_site\recipe_ingredient_delete.html:6
+#: .\recipe_site\templates\recipe_site\recipe_ingredient_delete.html:11
+#: .\recipe_site\templates\recipe_site\user_recipe.html:10
+#: .\recipe_site\templates\recipe_site\user_recipe_delete.html:11
+msgid "delete"
+msgstr "ištrinti"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:28
+msgid "add"
+msgstr "pridėti"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:30
+#: .\recipe_site\templates\recipe_site\user_recipe.html:16
+msgid "cooking instructions"
+msgstr "gaminimo instrukcija"
+
+#: .\recipe_site\templates\recipe_site\recipe_delete.html:6
+msgid "delete your recipe"
+msgstr "ištrinti savo receptą"
+
+#: .\recipe_site\templates\recipe_site\recipe_delete.html:12
+#: .\recipe_site\templates\recipe_site\recipe_ingredient_delete.html:12
+msgid "back to recipe"
+msgstr "grįžti atgal"
+
+#: .\recipe_site\templates\recipe_site\recipe_ingredient_create.html:5
+msgid "create recipe ingredient"
+msgstr "pridėti ingredintą prie recepto"
+
+#: .\recipe_site\templates\recipe_site\recipe_ingredient_create.html:9
+msgid "add recipe ingredient"
+msgstr "pridėti ingredientą prie recepto"
+
+#: .\recipe_site\templates\recipe_site\recipe_ingredient_create.html:11
+msgid "create new ingredient"
+msgstr "sukurti naują ingredientą"
+
+#: .\recipe_site\templates\recipe_site\recipe_ingredient_update.html:5
+#: .\recipe_site\templates\recipe_site\recipe_update.html:5
+msgid "edit your recipe"
+msgstr "pakeisti receptą"
+
+#: .\recipe_site\templates\recipe_site\recipe_ingredient_update.html:10
+msgid "update recipe ingredient"
+msgstr "pakeisti recepto ingredientą"
+
+#: .\recipe_site\templates\recipe_site\recipe_update.html:10
+msgid "update recipe"
+msgstr "pakeisti receptą"
+
+#: .\recipe_site\templates\recipe_site\user_favourites.html:5
+msgid "my favourite recipes"
+msgstr "mano mėgiamiausi receptai"
+
+#: .\recipe_site\templates\recipe_site\user_recipe.html:5
+msgid "favourited"
+msgstr "mėgstamas"
+
+#: .\recipe_site\templates\recipe_site\user_recipe.html:6
+msgid "You rated the recipe"
+msgstr "Jūs įvertinote receptą"
+
+#: .\recipe_site\templates\recipe_site\user_recipe_create.html:5
+msgid "create saved recipe"
+msgstr "išsaugokite receptą"
+
+#: .\recipe_site\templates\recipe_site\user_recipe_create.html:9
+msgid "create user recipe"
+msgstr "išsaugokite receptą"
+
+#: .\recipe_site\templates\recipe_site\user_recipe_delete.html:6
+msgid "delete your saved recipe"
+msgstr "pašalinti receptą iš išsaugotų"
+
+#: .\recipe_site\templates\recipe_site\user_recipe_delete.html:12
+msgid "back to saved recipe"
+msgstr "grįžti į išsaugotą receptą"
+
+#: .\recipe_site\templates\recipe_site\user_recipe_list.html:5
+msgid "my recipe history"
+msgstr "mano išsaugoti receptai"
+
+#: .\recipe_site\templates\recipe_site\user_recipe_list.html:9
+msgid "my rating"
+msgstr "mano įvertinimas"
+
+#: .\recipe_site\templates\recipe_site\user_recipe_update.html:5
+msgid "edit your saved recipe"
+msgstr "pakeisti išsaugotą receptą"
+
+#: .\recipe_site\templates\recipe_site\user_recipe_update.html:10
+msgid "update user recipe"
+msgstr "pakeisti išsaugotą receptą"
+
+#: .\recipe_site\views.py:52 .\recipe_site\views.py:126
+#: .\recipe_site\views.py:266
+msgid "Created successfully"
+msgstr "Sukurta sėkmingai"
+
+#: .\recipe_site\views.py:63 .\recipe_site\views.py:142
+#: .\recipe_site\views.py:227
+msgid "Updated successfully"
+msgstr "Pakeista sėkmingai"
+
+#: .\recipe_site\views.py:80 .\recipe_site\views.py:158
+#: .\recipe_site\views.py:248
+msgid "Deleted successfully"
+msgstr "Ištrinta sėkmingai"
+
+#: .\recipe_site\views.py:211
+msgid "Added successfully"
+msgstr "Pridėta sėkmingai"
