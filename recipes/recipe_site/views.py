@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 import random 
+from django.db.models import Q
+
 
 def index(request):
     return render(request, 'base.html')
@@ -16,12 +18,34 @@ def index(request):
 class RecipeDetailView(generic.DetailView):
     model = Recipe
     template_name = 'recipe_site/recipe.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_recipe'] = UserRecipe.objects.filter(recipe=self.get_object(), user=self.request.user).first()
+        return context
     
 
 class RecipeListView(generic.ListView):
     model = Recipe
     paginate_by = 6
     template_name = 'recipe_site/recipe_list.html' 
+    ordering = ['-created_at']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.GET.get('search')
+        if search:
+            ingredient_search = RecipeIngredient.objects.filter(ingredient__name__icontains=search)
+            print(ingredient_search)
+            if ingredient_search:
+                queryset = queryset.filter(ingredients__in=ingredient_search)
+            else:
+                queryset = queryset.filter(
+                    # Q(ingredients__icontains=search) |
+                    Q(name__icontains=search) |
+                    Q(description__icontains=search))
+        return queryset
 
 
 class MyRecipeListView(generic.ListView):
@@ -51,6 +75,7 @@ class RecipeCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.owner = self.request.user
         messages.success(self.request, _('Created successfully'))
         return super().form_valid(form)
+
 
 class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Recipe
@@ -85,6 +110,7 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVi
         context['delete'] = True
         return context
 
+
 class UserRecipeDetailView(generic.DetailView):
     model = UserRecipe
     template_name = 'recipe_site/user_recipe.html'
@@ -101,7 +127,6 @@ class UserRecipeListView(generic.ListView):
     paginate_by = 10
     template_name = 'recipe_site/user_recipe_list.html'
     context_object_name = 'user_recipes'
-
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -130,6 +155,7 @@ class UserRecipeCreateView(LoginRequiredMixin, generic.CreateView):
         context = super().get_context_data(**kwargs)
         print(self.object)
         return context
+
 
 class UserRecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = UserRecipe
@@ -268,3 +294,10 @@ class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
 
     def get_success_url(self):
           return reverse_lazy('my_recipe_list')
+
+
+# class BestRecipeListView(generic.ListView):
+#     model = Recipe
+#     paginate_by = 6
+#     template_name = 'recipe_site/best_recipe_list.html' 
+#     ordering = ['-rating']

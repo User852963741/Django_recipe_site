@@ -6,10 +6,14 @@
     {% for recipe in recipe_list %}
     <ul class="list-group">
         <li class="list-group-item">{% if recipe.cover %}<img src="{{ recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >{% endif %}
-        <a href="{% url 'recipe' recipe.id %}"><h4 style="display: inline;" >{{ recipe }}</h4></a> {% trans "rating" %}: {{ recipe.recipe_rating }}
+        <a href="{% url 'recipe' recipe.id %}"><h4 style="display: inline;" >{{ recipe }}</h4></a> {% trans "rating" %}: {{ recipe.recipe_rating }} 
+        <div class="float-right"> {% trans "created" %}: {{ recipe.created_at }}</div>
         </li>
     </ul>
     {% endfor %}
+    {% if recipe_list.count > 0 %}
+    {% include 'recipe_site/includes/paginator.html' %}
+    {% endif %}
 </div>
 
 {% endblock content %}

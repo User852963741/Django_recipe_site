@@ -10,6 +10,9 @@
         </li>
     </ul>
     {% endfor %}
-    <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'create_recipe' %}">{% trans "create recipe"|capfirst %}</a>
+    <div class="display: inline-block">
+    {% include 'recipe_site/includes/paginator.html' %}
+    <a class="btn btn-secondary bg-info mt-2 mb-2 float-right" href="{% url 'create_recipe' %}">{% trans "create recipe"|capfirst %}</a>
+    </div>
 </div>
 {% endblock content %}

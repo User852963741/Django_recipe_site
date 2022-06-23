@@ -25,6 +25,8 @@ class UserRecipeForm(forms.ModelForm):
 
 
                     }    
+
+                    
 class RecipeIngredientForm(forms.ModelForm):
     class Meta:
         model = models.RecipeIngredient

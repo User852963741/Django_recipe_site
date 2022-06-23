@@ -25,6 +25,11 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">{% trans "best rated recipes"|capfirst %}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'lucky_recipe' %}">{% trans "i'm feeling lucky"|capfirst %}</a></li>
                 {% endblock navigation %}</ul>
+                 <!-- Search -->
+                 <form class="form-inline" action="{% url 'recipe_list' %}" method="get" class="mb-3">
+                    <input type="text" name="search" value="{{ request.GET.search }}" placeholder="{% trans "search recipes" %}" class="form-control bg-dark text-light">
+                    <button type="submit" class="btn btn-secondary ml-1">&#128269;</button>
+                </form>
                 <!-- User menu -->
                 <ul class="navbar-nav">
                     {% if request.user.is_authenticated %}

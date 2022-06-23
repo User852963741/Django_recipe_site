@@ -4,6 +4,7 @@ from django.conf import settings
 from tinymce.models import HTMLField
 from django.urls import reverse
 
+
 class Ingredient(models.Model):
     name = models.CharField(_('name'), max_length=200, unique=True, help_text=_('enter ingredient name (in plural form if possible)'))
 
@@ -27,6 +28,7 @@ class Ingredient(models.Model):
         verbose_name = _('ingredient')
         verbose_name_plural = _('ingredients')
         ordering = ('name', )
+
 
 class Recipe(models.Model):
     owner = models.ForeignKey(
@@ -60,14 +62,14 @@ class Recipe(models.Model):
         else:
             return "?"
 
-
     class Meta:
         verbose_name = _('recipe')
         verbose_name_plural = _('recipes')
         ordering = ('created_at', )
 
+
 class RecipeIngredient(models.Model):
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name='ingredients')
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name='recipes')
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients')
     quantity = models.DecimalField(max_digits=10, decimal_places=2)
 
@@ -76,6 +78,7 @@ class RecipeIngredient(models.Model):
     
     class Meta:
         unique_together = ('ingredient', 'recipe', )
+
 
 class UserRecipe(models.Model):
     user = models.ForeignKey(
@@ -95,7 +98,6 @@ class UserRecipe(models.Model):
     
     def get_absolute_url(self):
         return reverse("user_recipe", kwargs={"pk": self.pk})
-
 
     class Meta:
         unique_together = ('user', 'recipe', )

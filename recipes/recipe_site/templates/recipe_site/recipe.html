@@ -4,7 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <h2>{{ object }} </h2> <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'user_recipe_create' %}?recipe_id={{object.id}}">{% trans "save & rate"|capfirst %}</a><br>
+            <h2>{{ object }}</h2> 
+            {% if user_recipe %}
+            <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'user_recipe_update' user_recipe.id %}">{% trans "edit"|capfirst %}</a><br>
+            {% else %}
+            <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'user_recipe_create' %}?recipe_id={{object.id}}">{% trans "save & rate"|capfirst %}</a><br>
+            {% endif %}
             {% trans "average rating"|capfirst %} - {{ object.recipe_rating }}<br>
             {% trans "recipe by"|capfirst %} - {{ object.owner }}<br>
             {{ object.description|safe }}<br>
