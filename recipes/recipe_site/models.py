@@ -69,9 +69,9 @@ class Recipe(models.Model):
 
 
 class RecipeIngredient(models.Model):
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name='recipes')
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, verbose_name=_('Ingredient'), related_name='recipes')
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients')
-    quantity = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.DecimalField(max_digits=10, verbose_name=_('Quantity'), decimal_places=2)
 
     def __str__(self):
         return f'{str(self.ingredient.name)} in {str(self.recipe.name)}'
@@ -89,8 +89,8 @@ class UserRecipe(models.Model):
     )
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='user_recipes')
     RATING_CHOICES = zip( range(1,11), range(1,11) )
-    rating = models.IntegerField(choices=RATING_CHOICES, blank=True)
-    favourite = models.BooleanField(default=False)
+    rating = models.IntegerField(choices=RATING_CHOICES, blank=True, verbose_name=_('Rating'),)
+    favourite = models.BooleanField(default=False, verbose_name=_('Favourite'),)
     note = models.TextField(_('private note'), max_length=1000, help_text=_('add a private note to yourself about this recipe'), blank=True, null=True)
 
     def __str__(self):

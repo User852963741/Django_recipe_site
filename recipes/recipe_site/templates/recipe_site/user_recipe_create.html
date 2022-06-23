@@ -2,7 +2,7 @@
 {% load static i18n crispy_forms_tags %}
 {% block content %}
 <div class="container">
-    <h1>{% trans "create saved recipe" %}</h1>
+    <h1>{% trans "create saved recipe"|capfirst %}</h1>
     <form action="{% url 'user_recipe_create'  %}" method="post">
         {% csrf_token %}
         {{ form|crispy }}

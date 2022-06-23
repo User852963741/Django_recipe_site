@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-23 13:24+0300\n"
+"POT-Creation-Date: 2022-06-23 15:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,6 +117,22 @@ msgstr "receptas"
 msgid "recipes"
 msgstr "receptai"
 
+#: .\recipe_site\models.py:72
+msgid "Ingredient"
+msgstr "Ingredientas"
+
+#: .\recipe_site\models.py:74
+msgid "Quantity"
+msgstr "Kiekis"
+
+#: .\recipe_site\models.py:92
+msgid "Rating"
+msgstr "Ivertinimas"
+
+#: .\recipe_site\models.py:93
+msgid "Favourite"
+msgstr "Mėgstamas"
+
 #: .\recipe_site\models.py:94
 msgid "private note"
 msgstr "privatus komentaras"
@@ -216,7 +232,7 @@ msgstr "mano įvertinimas"
 msgid "create ingredient"
 msgstr "sukurti ingredientą"
 
-#: .\recipe_site\templates\recipe_site\my_recipe_list.html:16
+#: .\recipe_site\templates\recipe_site\my_recipe_list.html:17
 #: .\recipe_site\templates\recipe_site\recipe_create.html:9
 msgid "create recipe"
 msgstr "sukurti receptą"
@@ -299,7 +315,7 @@ msgstr "pakeisti receptą"
 msgid "update recipe ingredient"
 msgstr "pakeisti recepto ingredientą"
 
-#: .\recipe_site\templates\recipe_site\recipe_list.html:11
+#: .\recipe_site\templates\recipe_site\recipe_list.html:12
 msgid "created"
 msgstr "sukurtas"
 
