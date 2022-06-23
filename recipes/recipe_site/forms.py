@@ -22,8 +22,6 @@ class UserRecipeForm(forms.ModelForm):
             'note': TinyMCE(),
             'user': forms.HiddenInput(),
             'recipe': forms.HiddenInput(),
-
-
                     }    
 
                     
