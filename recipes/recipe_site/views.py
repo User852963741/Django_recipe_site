@@ -209,6 +209,7 @@ class FavouriteListView(generic.ListView):
     model = UserRecipe
     template_name = 'recipe_site/user_favourites.html'
     context_object_name = 'favourite_list'
+    ordering = ['-rating']
 
     def get_queryset(self):
         queryset = super().get_queryset()

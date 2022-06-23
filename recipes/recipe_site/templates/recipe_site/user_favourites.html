@@ -6,7 +6,7 @@
     {% for favourite in favourite_list %}
     <ul class="list-group">
         <li class="list-group-item">{% if favourite.recipe.cover %}<img src="{{ favourite.recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >{% endif %}
-        <a href="{% url 'recipe' favourite.recipe.id %}"><h4 style="display: inline;" >{{ favourite.recipe }}</h4></a> {% trans "rating" %}: {{ favourite.recipe.recipe_rating }}
+        <a href="{% url 'recipe' favourite.recipe.id %}"><h4 style="display: inline;" >{{ favourite.recipe }}</h4></a> {% trans "average rating" %}: {{ favourite.recipe.recipe_rating }} {% trans "my rating" %}: {{ favourite.rating }}  
         </li>
     </ul>
     {% endfor %}

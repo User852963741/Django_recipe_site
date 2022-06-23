@@ -6,7 +6,7 @@
     {% for user_recipe in user_recipes %}
     <ul class="list-group">
         <li class="list-group-item">{% if user_recipe.recipe.cover %}<img src="{{ user_recipe.recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >{% endif %}
-        <a href="{% url 'user_recipe' user_recipe.id %}"><h4 style="display: inline;" >{{ user_recipe.recipe }}</h4></a> {% trans "average rating" %}: {{ user_recipe.recipe.recipe_rating }} {% trans "my rating" %}: {{user_recipe.rating}}
+        <a href="{% url 'user_recipe' user_recipe.id %}"><h4 style="display: inline;" >{{ user_recipe.recipe }}</h4></a> {% trans "average rating" %}:{{ user_recipe.recipe.recipe_rating }} {% trans "my rating" %}: {{user_recipe.rating}}
         </li>
     </ul>
     {% endfor %}

@@ -91,7 +91,7 @@ class UserRecipe(models.Model):
     RATING_CHOICES = zip( range(1,11), range(1,11) )
     rating = models.IntegerField(choices=RATING_CHOICES, blank=True)
     favourite = models.BooleanField(default=False)
-    note = models.TextField(_('private note'), max_length=1000, help_text=_('add a private note to yourself about this recipe'))
+    note = models.TextField(_('private note'), max_length=1000, help_text=_('add a private note to yourself about this recipe'), blank=True, null=True)
 
     def __str__(self):
         return f'{str(self.user)} - {str(self.recipe.name)}'
