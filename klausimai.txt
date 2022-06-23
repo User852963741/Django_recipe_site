@@ -1,0 +1,3 @@
+1. KAip padaryt kad searchas veikt7 su related naem
+2. kaip padaryt, kad mygtukas būtų edit jei jau yra userrecipe
+3. Pgal reiting1 kaip sudėliot receptus
