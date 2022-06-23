@@ -1,0 +1,12 @@
+{% load static i18n %}
+
+{% trans "average rating" %} -
+{% if user_recipe.recipe.recipe_rating > 7.99 %} <div class="badge bg-success">{{ user_recipe.recipe.recipe_rating }}</div>{% endif %}
+{% if user_recipe.recipe.recipe_rating <= 7.99 and user_recipe.recipe.recipe_rating >= 4 %} <div class="badge bg-warning">{{ user_recipe.recipe.recipe_rating }}</div>{% endif %}
+{% if user_recipe.recipe.recipe_rating < 4 %} <div class="badge bg-danger">{{ user_recipe.recipe.recipe_rating }}</div>{% endif %}
+{% if user_recipe.recipe.recipe_rating == '?' %} {{ user_recipe.recipe.recipe_rating }}{% endif %} 
+{% trans "my rating" %} -  
+{% if user_recipe.rating > 7.99 %} <div class="badge bg-success">{{ user_recipe.rating }}</div>{% endif %}
+{% if user_recipe.rating <= 7.99 and user_recipe.rating >= 4 %} <div class="badge bg-warning">{{ user_recipe.rating }}</div>{% endif %}
+{% if user_recipe.rating < 4 %} <div class="badge bg-danger">{{ user_recipe.rating }}</div>{% endif %}
+{% if user_recipe.rating == '?' %} {{ user_recipe.rating }}{% endif %}

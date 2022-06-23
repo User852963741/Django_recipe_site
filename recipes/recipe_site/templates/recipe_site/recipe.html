@@ -6,16 +6,23 @@
         <div class="col-sm">
             <h2>{{ object }}</h2> 
             {% if user_recipe %}
-            <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'user_recipe_update' user_recipe.id %}">{% trans "edit"|capfirst %}</a><br>
+            <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'user_recipe_update' user_recipe.id %}">{% trans "edit saved recipe"|capfirst %}</a><br>
             {% else %}
             <a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'user_recipe_create' %}?recipe_id={{object.id}}">{% trans "save & rate"|capfirst %}</a><br>
             {% endif %}
-            {% trans "average rating"|capfirst %} - {{ object.recipe_rating }}<br>
-            {% trans "recipe by"|capfirst %} - {{ object.owner }}<br>
-            {{ object.description|safe }}<br>
+            {% trans "average rating"|capfirst %} - 
+            {% if object.recipe_rating > 7.99 %} <div class="badge bg-success">{{ object.recipe_rating }}</div><br>{% endif %}
+            {% if object.recipe_rating <= 7.99 and object.recipe_rating >= 4 %} <div class="badge bg-warning">{{ object.recipe_rating }}</div><br>{% endif %}
+            {% if object.recipe_rating < 4 %} <div class="badge bg-danger">{{ object.recipe_rating }}</div><br>{% endif %}
+            {% if object.recipe_rating == '?' %} {{ object.recipe_rating }}<br>{% endif %}
+            {% trans "recipe by"|capfirst %} - {{ object.owner }} <img src="{{ object.owner.user_profile.picture.url }}" class="img-thumbnail" style="width:8%" alt="..."><br>
+            <h4>{% trans "description"|capfirst %}:</h4>
+            <div class="container bg-light">
+                {{ object.description|safe }}<br>
+            </div>
             <h4>{% trans "recipe ingredients"|capfirst %}:</h4>
             {% for product in object.ingredients.all %}
-            <div class="container">
+            <div class="container bg-light">
                 <div class="row no-gutters">
                         <div class="col-sm">
                             <br><span class="badge badge-pill badge-secondary ml-1 ">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span>
@@ -33,11 +40,13 @@
                 <br><a class="btn btn-secondary bg-info mt-2 mb-2" href="{% url 'recipe_ingredient_create' %}?recipe_id={{object.id}}">{% trans "add"|capfirst %}</a>
             {% endif %}
             <h4 class="mt-4">{% trans "cooking instructions"|capfirst %}:</h4>
-            {{ object.cooking_order|safe }}<br>
-            {% if object.owner == user %}
-                <a class="btn btn-secondary bg-primary" href="{% url 'recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
-                <a class="btn btn-outline-danger" href="{% url 'recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
-            {% endif %}
+            <div class="container bg-light mb-4">
+                {{ object.cooking_order|safe }}<br>
+            </div>
+                {% if object.owner == user %}
+                    <a class="btn btn-secondary bg-primary" href="{% url 'recipe_update' object.id %}">{% trans "edit recipe"|capfirst %}</a>
+                    <a class="btn btn-outline-danger" href="{% url 'recipe_delete' object.id %}">{% trans "delete recipe"|capfirst %}</a>
+                {% endif %}
         </div>
         <div class="col-sm">
             {% if object.cover %}

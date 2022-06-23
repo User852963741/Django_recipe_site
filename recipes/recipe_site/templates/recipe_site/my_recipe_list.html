@@ -5,8 +5,10 @@
     <h2 class="mb-3"> {% trans "my recipes"|capfirst %} </h2>
     {% for recipe in my_recipe_list %}
     <ul class="list-group">
-        <li class="list-group-item">{% if recipe.cover %}<img src="{{ recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >{% endif %}
-        <a href="{% url 'recipe' recipe.id %}"><h4 style="display: inline;" >{{ recipe }}</h4></a> {% trans "rating" %}: {{ recipe.recipe_rating }}
+        <li class="list-group-item">{% if recipe.cover %}<img src="{{ recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >
+        {% else %}<img src="{% static 'recipes/images/missing.jpg' %}" class="img-thumbnail" style="width:7%;  max-height: 70px;">{% endif %}
+        <a href="{% url 'recipe' recipe.id %}"><h4 style="display: inline;" >{{ recipe }}</h4></a>
+        {% include 'recipe_site/includes/recipe_rating.html' %}
         </li>
     </ul>
     {% endfor %}

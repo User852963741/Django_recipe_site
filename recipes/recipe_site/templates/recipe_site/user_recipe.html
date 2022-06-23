@@ -2,19 +2,38 @@
 {% load static i18n %}
 {% block content %}
 <div class="container">
-    <h2>{{ object|safe }}</h2> {% if object.favourite %} {% trans "favourited"|capfirst %} {% endif %}<br>
-    {% trans "You rated the recipe" %} {{ object.rating }}/10<br>
-    {{ object.note|safe }}<br>
-    {% if object.user == user1 %}
-        <a class="btn btn-secondary mt-4 mb-4" href="{% url 'user_recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
-        <a class="btn btn-outline-danger mt-4 mb-4" href="{% url 'user_recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
-    {% endif %}<br>
-    <h4>{% trans "recipe ingredients"|capfirst %}:</h4> <br>
-    {% for product in object.recipe.ingredients.all %}
-    <span class="badge badge-pill badge-secondary ml-1">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span> <br>
-    {% endfor %}
-    <h4 class="mt-4">{% trans "cooking instructions"|capfirst %}:</h4><br>
-    {{ object.recipe.cooking_order|safe }}<br>
-
+    <div class="row">
+        <div class="col-sm">
+            <h2 style="display: inline;">{{ object|safe }}</h2> {% if object.favourite %} <div class="badge bg-primary">{% trans "favourited"|capfirst %} {% endif %}</div><br>
+            <div class="mt-4"> {% trans "You rated the recipe" %} -
+            {% if object.rating > 7.99 %} <div class="badge bg-success">{{ object.rating }}</div><br>{% endif %}
+            {% if object.rating <= 7.99 and object.rating >= 4 %} <div class="badge bg-warning">{{ object.rating }}</div><br>{% endif %}
+            {% if object.rating < 4 %} <div class="badge bg-danger">{{ object.rating }}</div><br>{% endif %}
+            {% if object.rating == '?' %} {{ object.rating }}<br>{% endif %}</div>  
+            <div class="mt-4"><h5>{% trans "note"|capfirst %}:</h5></div>
+            <div class="container bg-light">
+                {{ object.note|safe }}<br>
+            </div>
+            {% if object.user == user1 %}
+                <a class="btn btn-secondary mt-4 mb-4" href="{% url 'user_recipe_update' object.id %}">{% trans "edit"|capfirst %}</a>
+                <a class="btn btn-outline-danger mt-4 mb-4" href="{% url 'user_recipe_delete' object.id %}">{% trans "delete"|capfirst %}</a>
+            {% endif %}<br>
+            <h4>{% trans "recipe ingredients"|capfirst %}:</h4> <br>
+            <div class="container bg-light">
+            {% for product in object.recipe.ingredients.all %}
+            <span class="badge badge-pill badge-secondary ml-1">{{ product.ingredient.name }} {{ product.quantity }} {{ product.ingredient.measurement_unit }}</span> <br>
+            {% endfor %}
+            </div>
+            <h4 class="mt-4">{% trans "cooking instructions"|capfirst %}:</h4><br>
+            <div class="container bg-light"> {{ object.recipe.cooking_order|safe }}<br></div>
+        </div>
+        <div class="col-sm">
+            {% if object.recipe.cover %}
+                        <img src="{{ object.recipe.cover.url }}" class="img-thumbnail" style="width:80%" alt="...">
+                    {% else %}
+                        <img src="{% static 'recipes/images/missing.jpg' %}" class="card-img-top" style="width:35%" alt="...">
+                    {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock content %}

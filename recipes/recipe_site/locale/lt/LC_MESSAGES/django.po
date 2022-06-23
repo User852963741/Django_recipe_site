@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-23 10:20+0300\n"
+"POT-Creation-Date: 2022-06-23 13:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,6 +89,7 @@ msgid "owner"
 msgstr "savininkas"
 
 #: .\recipe_site\models.py:43
+#: .\recipe_site\templates\recipe_site\recipe.html:19
 msgid "description"
 msgstr "aprašymas"
 
@@ -155,8 +156,8 @@ msgid "my favourites"
 msgstr "mano mėgiamiausi"
 
 #: .\recipe_site\templates\base.html:43
-msgid "recipe history"
-msgstr "receptų istorija"
+msgid "saved recipes"
+msgstr "išsaugoti receptai"
 
 #: .\recipe_site\templates\base.html:45
 msgid "admin"
@@ -198,64 +199,75 @@ msgstr "sekantis"
 msgid "last"
 msgstr "paskutinis"
 
+#: .\recipe_site\templates\recipe_site\includes\recipe_rating.html:3
+msgid "rating"
+msgstr "įvertinimas"
+
+#: .\recipe_site\templates\recipe_site\includes\user_recipe_rating.html:3
+#: .\recipe_site\templates\recipe_site\recipe.html:13
+msgid "average rating"
+msgstr "vidutinis įvertinimas"
+
+#: .\recipe_site\templates\recipe_site\includes\user_recipe_rating.html:8
+msgid "my rating"
+msgstr "mano įvertinimas"
+
 #: .\recipe_site\templates\recipe_site\ingredient_create.html:9
 msgid "create ingredient"
 msgstr "sukurti ingredientą"
 
-#: .\recipe_site\templates\recipe_site\my_recipe_list.html:9
-#: .\recipe_site\templates\recipe_site\recipe_list.html:9
-msgid "rating"
-msgstr "įvertinimas"
-
-#: .\recipe_site\templates\recipe_site\my_recipe_list.html:15
+#: .\recipe_site\templates\recipe_site\my_recipe_list.html:16
 #: .\recipe_site\templates\recipe_site\recipe_create.html:9
 msgid "create recipe"
 msgstr "sukurti receptą"
 
 #: .\recipe_site\templates\recipe_site\recipe.html:9
-#: .\recipe_site\templates\recipe_site\recipe.html:25
-#: .\recipe_site\templates\recipe_site\recipe.html:38
-#: .\recipe_site\templates\recipe_site\user_recipe.html:9
-msgid "edit"
-msgstr "pakeisti"
+msgid "edit saved recipe"
+msgstr "pakeisti išsaugotą receptą"
 
 #: .\recipe_site\templates\recipe_site\recipe.html:11
 msgid "save & rate"
 msgstr "išsaugoti & įvertinti"
 
-#: .\recipe_site\templates\recipe_site\recipe.html:13
-#: .\recipe_site\templates\recipe_site\user_favourites.html:9
-#: .\recipe_site\templates\recipe_site\user_recipe_list.html:9
-msgid "average rating"
-msgstr "vidutinis įvertinimas"
-
-#: .\recipe_site\templates\recipe_site\recipe.html:14
+#: .\recipe_site\templates\recipe_site\recipe.html:18
 msgid "recipe by"
 msgstr "recepto autorius"
 
-#: .\recipe_site\templates\recipe_site\recipe.html:16
-#: .\recipe_site\templates\recipe_site\user_recipe.html:12
+#: .\recipe_site\templates\recipe_site\recipe.html:23
+#: .\recipe_site\templates\recipe_site\user_recipe.html:21
 msgid "recipe ingredients"
 msgstr "recepto ingredientai"
 
-#: .\recipe_site\templates\recipe_site\recipe.html:26
-#: .\recipe_site\templates\recipe_site\recipe.html:39
+#: .\recipe_site\templates\recipe_site\recipe.html:32
+#: .\recipe_site\templates\recipe_site\user_recipe.html:18
+msgid "edit"
+msgstr "pakeisti"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:33
 #: .\recipe_site\templates\recipe_site\recipe_delete.html:11
 #: .\recipe_site\templates\recipe_site\recipe_ingredient_delete.html:6
 #: .\recipe_site\templates\recipe_site\recipe_ingredient_delete.html:11
-#: .\recipe_site\templates\recipe_site\user_recipe.html:10
+#: .\recipe_site\templates\recipe_site\user_recipe.html:19
 #: .\recipe_site\templates\recipe_site\user_recipe_delete.html:11
 msgid "delete"
 msgstr "ištrinti"
 
-#: .\recipe_site\templates\recipe_site\recipe.html:33
+#: .\recipe_site\templates\recipe_site\recipe.html:40
 msgid "add"
 msgstr "pridėti"
 
-#: .\recipe_site\templates\recipe_site\recipe.html:35
-#: .\recipe_site\templates\recipe_site\user_recipe.html:16
+#: .\recipe_site\templates\recipe_site\recipe.html:42
+#: .\recipe_site\templates\recipe_site\user_recipe.html:27
 msgid "cooking instructions"
 msgstr "gaminimo instrukcija"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:47
+msgid "edit recipe"
+msgstr "pakeisti receptą"
+
+#: .\recipe_site\templates\recipe_site\recipe.html:48
+msgid "delete recipe"
+msgstr "ištrinti savo receptą"
 
 #: .\recipe_site\templates\recipe_site\recipe_delete.html:6
 msgid "delete your recipe"
@@ -287,7 +299,7 @@ msgstr "pakeisti receptą"
 msgid "update recipe ingredient"
 msgstr "pakeisti recepto ingredientą"
 
-#: .\recipe_site\templates\recipe_site\recipe_list.html:10
+#: .\recipe_site\templates\recipe_site\recipe_list.html:11
 msgid "created"
 msgstr "sukurtas"
 
@@ -299,18 +311,17 @@ msgstr "pakeisti receptą"
 msgid "my favourite recipes"
 msgstr "mano mėgiamiausi receptai"
 
-#: .\recipe_site\templates\recipe_site\user_favourites.html:9
-#: .\recipe_site\templates\recipe_site\user_recipe_list.html:9
-msgid "my rating"
-msgstr "mano įvertinimas"
-
-#: .\recipe_site\templates\recipe_site\user_recipe.html:5
+#: .\recipe_site\templates\recipe_site\user_recipe.html:7
 msgid "favourited"
 msgstr "mėgstamas"
 
-#: .\recipe_site\templates\recipe_site\user_recipe.html:6
+#: .\recipe_site\templates\recipe_site\user_recipe.html:8
 msgid "You rated the recipe"
 msgstr "Jūs įvertinote receptą"
+
+#: .\recipe_site\templates\recipe_site\user_recipe.html:13
+msgid "note"
+msgstr "pastaba"
 
 #: .\recipe_site\templates\recipe_site\user_recipe_create.html:5
 msgid "create saved recipe"
@@ -340,24 +351,27 @@ msgstr "pakeisti išsaugotą receptą"
 msgid "update user recipe"
 msgstr "pakeisti išsaugotą receptą"
 
-#: .\recipe_site\views.py:76 .\recipe_site\views.py:151
-#: .\recipe_site\views.py:293
+#: .\recipe_site\views.py:75 .\recipe_site\views.py:149
+#: .\recipe_site\views.py:289
 msgid "Created successfully"
 msgstr "Sukurta sėkmingai"
 
-#: .\recipe_site\views.py:88 .\recipe_site\views.py:168
-#: .\recipe_site\views.py:254
+#: .\recipe_site\views.py:87 .\recipe_site\views.py:166
+#: .\recipe_site\views.py:251
 msgid "Updated successfully"
 msgstr "Pakeista sėkmingai"
 
-#: .\recipe_site\views.py:105 .\recipe_site\views.py:184
-#: .\recipe_site\views.py:275
+#: .\recipe_site\views.py:104 .\recipe_site\views.py:182
+#: .\recipe_site\views.py:272
 msgid "Deleted successfully"
 msgstr "Ištrinta sėkmingai"
 
-#: .\recipe_site\views.py:238
+#: .\recipe_site\views.py:235
 msgid "Added successfully"
 msgstr "Pridėta sėkmingai"
+
+#~ msgid "recipe history"
+#~ msgstr "receptų istorija"
 
 #~ msgid "best rated recipes"
 #~ msgstr "geriausiai įvertinti receptai"

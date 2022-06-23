@@ -5,8 +5,12 @@
     <h2 class="mb-3"> {% trans "my favourite recipes"|capfirst %} </h2>
     {% for favourite in favourite_list %}
     <ul class="list-group">
-        <li class="list-group-item">{% if favourite.recipe.cover %}<img src="{{ favourite.recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >{% endif %}
-        <a href="{% url 'recipe' favourite.recipe.id %}"><h4 style="display: inline;" >{{ favourite.recipe }}</h4></a> {% trans "average rating" %}: {{ favourite.recipe.recipe_rating }} {% trans "my rating" %}: {{ favourite.rating }}  
+        <li class="list-group-item">{% if favourite.recipe.cover %}<img src="{{ favourite.recipe.cover.url }}" class="img-thumbnail" style="width:7%;  max-height: 70px;" >
+        {% else %}<img src="{% static 'recipes/images/missing.jpg' %}" class="img-thumbnail" style="width:7%;  max-height: 70px;">{% endif %}
+        <a href="{% url 'recipe' favourite.recipe.id %}"><h4 style="display: inline;" >{{ favourite.recipe }}</h4></a>
+        {% with favourite as user_recipe %}
+            {% include 'recipe_site/includes/user_recipe_rating.html' %}
+        {% endwith %}
         </li>
     </ul>
     {% endfor %}

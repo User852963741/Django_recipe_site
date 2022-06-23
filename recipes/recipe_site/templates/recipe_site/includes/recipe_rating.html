@@ -1,0 +1,7 @@
+{% load static i18n %}
+
+{% trans "rating" %} - 
+{% if recipe.recipe_rating > 7.99 %} <div class="badge bg-success">{{ recipe.recipe_rating }}</div>{% endif %}
+{% if recipe.recipe_rating <= 7.99 and recipe.recipe_rating >= 4 %} <div class="badge bg-warning">{{ recipe.recipe_rating }}</div>{% endif %}
+{% if recipe.recipe_rating < 4 %} <div class="badge bg-danger">{{ recipe.recipe_rating }}</div>{% endif %}
+{% if recipe.recipe_rating == '?' %} {{ recipe.recipe_rating }}{% endif %} 
